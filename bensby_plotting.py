@@ -156,6 +156,39 @@ def plot_lica_FeH_pop():
 
     return
 
+def plot_FeH_age():
+    star_age, star_age_error= get_ages()
+    pop_id_array=np.int_(np.zeros(bensby_table['td/d'].shape) )#array to be comprised of numbers that represent the population to which each star should belong; going to be added to as we go here.
+    
+    thick_disk_stars=np.where(bensby_table['td/d']<=thin_disk_bound_tdd)
+    FeH=bensby_table['Fe/H']
+    FeH_error=bensby_table['e_Fe/H']
+    pop_id_array[thick_disk_stars]=0
+    #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0])
+
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0], linestyle='None')
+    
+    thick_disk_stars=np.where((bensby_table['td/d']>=thick_disk_bound_tdd) & (bensby_table['td/h']>= halo_bound_tdh))
+    
+    pop_id_array[thick_disk_stars]=1
+
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thick Disk', linestyle='None', marker=marker, color=colors[1], linestyle='None')
+    
+    
+    thick_disk_stars=np.where(bensby_table['td/h']<halo_bound_tdh)
+    
+    pop_id_array[thick_disk_stars]=2
+
+
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Halo', linestyle='None', marker=marker, color=colors[2], linestyle='None')
+    
+    thick_disk_stars=np.where((bensby_table['td/d']<thick_disk_bound_tdd)&(bensby_table['td/d']> thin_disk_bound_tdd))
+    
+    pop_id_array[thick_disk_stars]=3
+
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='In Between', linestyle='None', marker=marker, color=colors[3], linestyle='None')
+    return
+
 
 def plot_lica_age_pop(colors=['b','b','b','b'],marker='o', rep_errors=False, sol_norm=True):
     if rep_errors:

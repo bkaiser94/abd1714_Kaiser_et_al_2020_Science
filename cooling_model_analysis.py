@@ -46,8 +46,8 @@ null_age_val=50. #I'm experimenting though for the moment
 default_limit_universe=True
 default_randomize=True
 massloss_default=True
-#default_z=0.0001 #allegedly thick disk value
-default_z=0.02 #approximately solar
+default_z=0.0001 #allegedly thick disk value
+#default_z=0.02 #approximately solar
 
 
 
@@ -71,11 +71,11 @@ default_z=0.02 #approximately solar
 
 
 ##1644
-#wd_name='GaiaJ1644-0449'
-#target_logg=7.77
-#target_logg_err= 0.23
-#target_teff= 3830.
-#target_teff_err= 230.
+wd_name='GaiaJ1644-0449'
+target_logg=7.77
+target_logg_err= 0.23
+target_teff= 3830.
+target_teff_err= 230.
 
 desired_NaCa= -1.1 #Sioux county meteorite, achondrite
 
