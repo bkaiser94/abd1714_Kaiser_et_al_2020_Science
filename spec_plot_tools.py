@@ -1050,7 +1050,11 @@ def initiate_science_plot():
     Create all of the conditions required for a Science figure. I'm going to be calling this a ton of times anyway, so I figured I should get it right now.
     
     """
-    plt.rc('font',size=9)
+    #import matplotlib
+    #matplotlib.use('pdf')
+    #import importlib
+    #importlib.reload(plt)
+    plt.rc('font',family='Microsoft Sans Serif',size=9)
 
 
     

@@ -166,13 +166,13 @@ def plot_FeH_age():
     pop_id_array[thick_disk_stars]=0
     #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0])
 
-    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0], linestyle='None')
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0], )
     
     thick_disk_stars=np.where((bensby_table['td/d']>=thick_disk_bound_tdd) & (bensby_table['td/h']>= halo_bound_tdh))
     
     pop_id_array[thick_disk_stars]=1
 
-    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thick Disk', linestyle='None', marker=marker, color=colors[1], linestyle='None')
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Thick Disk', linestyle='None', marker=marker, color=colors[1])
     
     
     thick_disk_stars=np.where(bensby_table['td/h']<halo_bound_tdh)
@@ -180,13 +180,13 @@ def plot_FeH_age():
     pop_id_array[thick_disk_stars]=2
 
 
-    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Halo', linestyle='None', marker=marker, color=colors[2], linestyle='None')
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='Halo', linestyle='None', marker=marker, color=colors[2])
     
     thick_disk_stars=np.where((bensby_table['td/d']<thick_disk_bound_tdd)&(bensby_table['td/d']> thin_disk_bound_tdd))
     
     pop_id_array[thick_disk_stars]=3
 
-    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='In Between', linestyle='None', marker=marker, color=colors[3], linestyle='None')
+    plt.errorbar(star_age[thick_disk_stars], FeH[thick_disk_stars],xerr=FeH_error[thick_disk_stars],yerr=star_age_error[thick_disk_stars], label='In Between', linestyle='None', marker=marker, color=colors[3])
     return
 
 

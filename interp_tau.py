@@ -188,7 +188,7 @@ def extrapolate_tau_x_logg(target_teff, target_logg, element):
         input_vals_array=False
         #for some crazy reason attempting to index a float value in the terminal python script is a 
         #TypeError, but doing the exact same thing when calling from a jupyter notebook is an IndexError. 
-        #Can't make this shit up. Maybe they're slightly different python version?
+        #Maybe they're slightly different python version?
         #print("Not an array input, which is ok.")
     if input_vals_array:
         tau_list=[]

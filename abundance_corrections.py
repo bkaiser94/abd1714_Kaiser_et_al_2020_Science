@@ -20,6 +20,8 @@ import cal_params as cp
 
 n_points=1e5
 
+n_points=int(1e6)
+
 def declining_phase(target_teff, log_el1_over_el2, time,el1, el2, logg=8.0, steady_state_start=False, cross_extrap=True):
     """
     provide log_el1_over_el2 as an absolute number ratio not the one normalized to solar abundances.
@@ -230,6 +232,47 @@ def easy_dist_decline(wd_row, el1, el2, el3, desired_log_el3el2, n_points=n_poin
         plt.show()
     else:
         pass
+    return
+
+def easy_dist_ssp(wd_row,elements,n_points=n_points, plot_all=False):
+    string1= elements[0].lower()+'/'+elements[1].lower()
+    string2=elements[2].lower()+'/'+elements[1].lower()
+    #times= np.arange(0, t_max+t_step, t_step)
+    
+    
+    target_el1el2=wd_row[string1]
+    target_el3el2=wd_row[string2]
+    logg=wd_row['logg']
+    teff=wd_row['teff']
+    teff_dist=np.random.normal(loc=teff, scale=wd_row['teff_err'], size=n_points)
+    logg_dist= np.random.normal(loc=logg, scale=wd_row['logg_err'], size=n_points)
+    el1el2_dist=np.random.normal(loc=target_el1el2,scale=wd_row[string1+'_err'],size=n_points)
+    el3el2_dist=np.random.normal(loc=target_el3el2,scale=wd_row[string2+'_err'],size=n_points)
+    def get_ssp(teff, logg, el1el2, el3el2, elements):
+        tau_el1=itau.extrapolate_tau_x_logg(teff, logg, elements[0])
+        tau_el2=itau.extrapolate_tau_x_logg(teff, logg, elements[1])
+        tau_el3=itau.extrapolate_tau_x_logg(teff, logg, elements[2])
+        el1el2=target_el1el2+tau_el2-tau_el1
+        el3el2=el3el2+tau_el2-tau_el3
+        return el1el2, el3el2
+    target_ssp_el1el2,target_ssp_el3el2=get_ssp(teff,logg, target_el1el2, target_el3el2,elements)
+    el1el2_ssp_dist, el3el2_ssp_dist=get_ssp(teff_dist,logg_dist, el1el2_dist, el3el2_dist,elements)
+    if plot_all:
+        print('target_ssp', elements[0],elements[1],target_ssp_el1el2)
+        print('target_ssp', elements[2], elements[1], target_ssp_el3el2)
+        print('dist ssp',elements[0], elements[1], np.median(el1el2_ssp_dist), np.mean(el1el2_ssp_dist), np.std(el1el2_ssp_dist))
+        print('dist ssp',elements[2], elements[1], np.median(el3el2_ssp_dist), np.mean(el3el2_ssp_dist), np.std(el3el2_ssp_dist))
+        plt.hist(el1el2_ssp_dist)
+        plt.axvline(target_ssp_el1el2)
+        plt.title(elements[0]+'/'+elements[1])
+        plt.show()
+        plt.hist(el3el2_ssp_dist)
+        plt.axvline(target_ssp_el3el2)
+        plt.title(elements[2]+'/'+elements[1])
+        plt.show()
+        plt.scatter(el3el2_ssp_dist,el1el2_ssp_dist)
+        plt.plot(target_ssp_el3el2,target_ssp_el1el2,marker='*', markersize=14)
+        plt.show()
     return
 
 
