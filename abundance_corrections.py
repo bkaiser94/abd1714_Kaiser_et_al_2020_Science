@@ -301,7 +301,7 @@ def easy_dist_ssp(wd_row,elements,n_points=n_points, plot_all=False, tau_rand=Fa
         plt.scatter(el3el2_ssp_dist,el1el2_ssp_dist)
         plt.plot(target_ssp_el3el2,target_ssp_el1el2,marker='*', markersize=14)
         plt.show()
-    return target_ssp_el1el2, target_ssp_el3el2, el1el2_ssp_dist, el3el2_ssp_dist
+    return target_ssp_el1el2, target_ssp_el3el2, np.std(el1el2_ssp_dist), np.std(el3el2_ssp_dist)
 
 
 if __name__ == '__main__':
