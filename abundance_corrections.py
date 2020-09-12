@@ -256,10 +256,12 @@ def easy_dist_ssp(wd_row,elements,n_points=n_points, plot_all=False, tau_rand=Fa
         tau2_tau1= tau_el2-tau_el1
         tau2_tau3=tau_el2-tau_el3
         if tau_rand:
-            print('tau2_tau1.shape',tau2_tau1.shape)
+            #print('tau2_tau1.shape',tau2_tau1.shape)
             tau2_tau1=np.random.normal(loc=tau2_tau1,scale=tau_add)
             tau2_tau3=np.random.normal(loc=tau2_tau3,scale=tau_add)
-            print('tau2_tau1.shape',tau2_tau1.shape)
+            print("tau_"+elements[0]+"-tau_"+elements[1], -1*np.mean(tau2_tau1),"+/-",np.std(tau2_tau1))
+            print("tau_"+elements[2]+"-tau_"+elements[1], -1*np.mean(tau2_tau3),"+/-",np.std(tau2_tau3))
+            #print('tau2_tau1.shape',tau2_tau1.shape)
         else:
             
             pass
