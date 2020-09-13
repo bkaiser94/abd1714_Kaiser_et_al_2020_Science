@@ -38,8 +38,8 @@ test_side = test_width/2
 
 pix_width=3
 sdss_pix_width = 10
-#sdss_scale_factor=20.6 #BOSS scaling
-sdss_scale_factor= 1.467 #SDSS spectrograph scaling
+sdss_scale_factor=20.6 #BOSS scaling
+#sdss_scale_factor= 1.467 #SDSS spectrograph scaling
 sdss_seeing=0.7 #arcsec seeing
 sdss_see_sig=sdss_seeing/2.355/ pixel_scale
 
@@ -227,7 +227,7 @@ def norm_spectrum(input_spec, norm_range, wave_range=True, show_norm_range=True)
     return out_spec
 
 
-def convolve_spectrum(target_spec, header, kernel_type='gaussian', pix_width=pix_width, kernel_width=slit_width):
+def convolve_spectrum(target_spec, header, kernel_type='gaussian', pix_width=pix_width, kernel_width=slit_width,double_smooth=False):
     #pix_width =3
     #pix_width =20
     fluxes= np.copy(target_spec[1])
@@ -246,7 +246,7 @@ def convolve_spectrum(target_spec, header, kernel_type='gaussian', pix_width=pix
         spec_conv = conv.convolve(fluxes, see_kernel)
     elif kernel_type=='sdss_match':
         see_sig = float(header['SEE_SIG']) #sigma value of gaussian fit to do the 
-        conv_see_sig= np.sqrt(see_sig**2- sdss_see_sig**2)
+        conv_see_sig=np.sqrt(see_sig**2- sdss_see_sig**2)
         print('sdss_see_sig', sdss_see_sig)
         print('see_sig', see_sig)
         print('conv_see_sig', conv_see_sig)
