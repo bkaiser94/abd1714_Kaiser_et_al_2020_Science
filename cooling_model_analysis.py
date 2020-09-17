@@ -46,8 +46,8 @@ null_age_val=50. #I'm experimenting though for the moment
 default_limit_universe=True
 default_randomize=True
 massloss_default=True
-default_z=0.0001 #allegedly thick disk value
-#default_z=0.02 #approximately solar
+#default_z=0.0001 #allegedly thick disk value
+default_z=0.02 #approximately solar
 
 
 
@@ -613,6 +613,20 @@ print((teffm_to_age(target_teff, wd_mass_vals)*1e-9).shape)
 #plt.axhline(y=10, linestyle='--', color='k')
 #plt.axvline(x=spt.naninfmax(cummings_m_ranges), color='r', linestyle='--', label=r'IFMR $M_{WD}$ Range')
 #plt.axvline(x=spt.naninfmin(cummings_m_ranges), color='r', linestyle='--')
+
+
+#### output the things to make the plot (for making science figures)
+#print('\n\n &&&&&&&&&\nSaving files for Figure S5 \n')
+#np.savetxt('total_ages.csv',np.vstack([wd_mass_vals,total_ages]),delimiter=',')
+#np.savetxt('cooling_ages.csv',np.vstack([wd_mass_vals,cooling_ages]),delimiter=',')
+#np.savetxt('progenitor_ages.csv', np.vstack([wd_mass_vals,ms_ages]),delimiter=',')
+#np.savetxt('J1644_s5_mass_dist.csv', target_mass_dist, delimiter=',')
+#print('\nFiles saved\n&&&&&&&\n\n')
+
+
+##########
+
+
 plt.axhline(y=13.8, color='k', label='Age of the Universe', linestyle= '--' )
 plt.plot(wd_mass_vals, total_ages, label='Total Age')
 #plt.plot(wd_mass_vals, lowz_total_ages, label='Total Age Z='+str(0.0001))
