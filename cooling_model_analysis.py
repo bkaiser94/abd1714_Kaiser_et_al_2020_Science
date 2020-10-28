@@ -77,6 +77,7 @@ target_logg_err= 0.23
 target_teff= 3830.
 target_teff_err= 230.
 
+
 desired_NaCa= -1.1 #Sioux county meteorite, achondrite
 
 ############################3
