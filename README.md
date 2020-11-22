@@ -3,6 +3,8 @@ Reduction and Analysis Code for Kaiser et al. 2020, Exo-Planetesimal Lithium Pol
 
 This code contains the scripts used to reduce the raw Goodman data to produce the 1-d spectra provided as supplementary data. It also contains the code to produce the figures in the paper (which incorporates some of the analysis). It includes the necessary supporting scripts for the figure production and to produce the input files for the figures (excluding those files that come from other publicly available sources as outlined below). 
 
+The code and reference files refer to "GaiaJ1644-0449" throughout them. This was the previous name we used for WD J1644–0449, and rather than changing it everywhere in the code I just created a function that replaces it in outputs for display purposes.
+
 ***************
 THINGS YOU WILL HAVE TO DO TO MAKE THIS SCRIPT RUN (THIS IS NOT EXHAUSTIVE IT'S JUST DEFINITE FILES TO RETRIEVE):
 
