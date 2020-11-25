@@ -1093,11 +1093,13 @@ def fix_display_string(input_string):
     bad_string_list=['GaiaJ1644-0449',
                      "SDSSJ1330+6435",
                      "WDJ2356-209",
-                     "Gaia J1644-0449"]
+                     "Gaia J1644-0449",
+                     "WD J2356-209"]
     good_string_list=["WD J1644–0449",
                       "SDSS J1330+6435",
                       "WD J2356–209",
-                      "WD J1644–0449"]
+                      "WD J1644–0449",
+                      "WD J2356–209"]
     for bad_string, good_string in zip(bad_string_list, good_string_list):
         print('bad_string:', bad_string)
         print('input_string:', input_string)
