@@ -24,6 +24,7 @@ from astropy.table import Table, QTable, Column
 import matplotlib.pyplot as plt
 import scipy.stats as scistats
 import matplotlib.patches as mp
+from astropy.time import Time
 
 
 #import plotting_dicts as pod
@@ -80,7 +81,7 @@ rv_sigma=100.
 
 
 #target_input='input_targets.csv' #target astropy table saved as a CSV.
-
+target_input='20191218_DZs_for_paper.csv'
 target_table = Table.read(target_input)
 
 ##############################
@@ -142,6 +143,9 @@ def get_errors(distribution, percent_off = percent_off):
     #except astropy.units.core.UnitsError as error:
     except u.core.UnitsError as error:
         return  np.array([[median.value-low_bar],[high_bar-median.value]])
+    except u.core.UnitConversionError as error:
+        print(error)
+        return np.array([[median.value-low_bar],[high_bar-median.value]])
     
 def test_errorbars(group_vel, group_disp, label):
     group_vel=np.array(group_vel)
@@ -247,6 +251,14 @@ def get_galLSR_coords(row, do_mc=False, vary_rv=False):
     #galLSR_coords= star_coord.transform_to(galcart)
     
     #return galLSR_coords
+    
+def get_J2000_coords(row):
+    star_coord= coord.SkyCoord(row['ra']*u.deg, row['dec']*u.deg, pm_ra_cosdec= row['pmra']*u.mas/u.yr, pm_dec= row['pmdec']*u.mas/u.yr, radial_velocity=0. *u.km/u.s, distance= 1000./row['parallax'] *u.pc , frame='icrs', obstime=Time(2015.5, format='jyear'))
+    print(row['name'],"J2015.5 coords", star_coord.to_string('hmsdms'))
+    j2000_coords=star_coord.apply_space_motion(new_obstime=Time(2000.0, format='jyear'))
+    print(row['name'], "J2000.0 coords", j2000_coords.to_string('hmsdms'))
+    
+    return
 
 def gal_vel_curve(l, d):
     """
@@ -353,7 +365,7 @@ v_err_list=[]
 
 for row in target_table:
     galLSR_single, galLSR_dist= get_galLSR_coords(row, do_mc=True, vary_rv=False)
-    
+    get_J2000_coords(row)
     #output_vel=get_galLSR_coords(row,do_mc=False, vary_rv=False)
     output_vel=galLSR_single.velocity
     #output_row=[row['name'], row['ra'],row['dec'],output_vel.d_x.to(u.km/u.s).value, output_vel.d_y.to(u.km/u.s).value, output_vel.d_z.to(u.km/u.s).value, 1000./row['parallax'], row['parallax']]

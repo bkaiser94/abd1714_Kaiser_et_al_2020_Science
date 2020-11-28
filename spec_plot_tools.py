@@ -1083,32 +1083,3 @@ def start_ApJ_fig(width_cols=1, constrained_layout=True, width_height=[1.,1.]):
     return
 
 
-def fix_display_string(input_string):
-    """
-    INPUT: input_string, some string that needs to be examined for if it needs to be replaced with something else.
-    
-    
-    This functions primary utility is to replace all occurrences of "GaiaJ1644-0449" with the new name "WD J1644–0449". However this can be changed very easily if we find out that name isn't acceptable either. I went ahead and had it fix the space in the other name
-    """
-    bad_string_list=['GaiaJ1644-0449',
-                     "SDSSJ1330+6435",
-                     "WDJ2356-209",
-                     "Gaia J1644-0449",
-                     "WD J2356-209"]
-    good_string_list=["WD J1644–0449",
-                      "SDSS J1330+6435",
-                      "WD J2356–209",
-                      "WD J1644–0449",
-                      "WD J2356–209"]
-    for bad_string, good_string in zip(bad_string_list, good_string_list):
-        print('bad_string:', bad_string)
-        print('input_string:', input_string)
-        output_string=input_string.replace(bad_string, good_string)
-        print('output_string:', output_string)
-        if input_string!= output_string:
-            return output_string
-        else:
-            pass
-    
-    #that should essentially try every bad_string inside the input_string and if it is not present, nothing will happen.
-    return output_string
