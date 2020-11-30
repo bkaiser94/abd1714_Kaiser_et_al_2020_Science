@@ -203,13 +203,17 @@ def plot_lica_age_pop(colors=['b','b','b','b'],marker='o', rep_errors=False, sol
     pop_id_array[thick_disk_stars]=0
     #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0])
 
-    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0],markersize=markersize)
+    #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thin Disk', linestyle='None', marker=marker, color=colors[0],markersize=markersize) #with labels
+    
+    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Neighborhood Stars', linestyle='None', marker=marker, color=colors[0],markersize=markersize) #single label
     
     thick_disk_stars=np.where((bensby_table['td/d']>=thick_disk_bound_tdd) & (bensby_table['td/h']>= halo_bound_tdh))
     
     pop_id_array[thick_disk_stars]=1
 
-    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thick Disk', linestyle='None', marker=marker, color=colors[1],markersize=markersize)
+    #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Thick Disk', linestyle='None', marker=marker, color=colors[1],markersize=markersize) #with lables
+    
+    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], linestyle='None', label='', marker=marker, color=colors[1],markersize=markersize) #single label
     
     
     thick_disk_stars=np.where(bensby_table['td/h']<halo_bound_tdh)
@@ -217,13 +221,17 @@ def plot_lica_age_pop(colors=['b','b','b','b'],marker='o', rep_errors=False, sol
     pop_id_array[thick_disk_stars]=2
 
 
-    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Halo', linestyle='None', marker=marker, color=colors[2],markersize=markersize)
+    #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='Halo', linestyle='None', marker=marker, color=colors[2],markersize=markersize) #with labels
+    
+    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars],  label='', linestyle='None', marker=marker, color=colors[2],markersize=markersize) #single label
     
     thick_disk_stars=np.where((bensby_table['td/d']<thick_disk_bound_tdd)&(bensby_table['td/d']> thin_disk_bound_tdd))
     
     pop_id_array[thick_disk_stars]=3
 
-    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='In Between', linestyle='None', marker=marker, color=colors[3],markersize=markersize)
+    #plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='In Between', linestyle='None', marker=marker, color=colors[3],markersize=markersize) #with labels
+    
+    plt.plot(bensby_table['Age'][thick_disk_stars], lica[thick_disk_stars], label='', linestyle='None', marker=marker, color=colors[3],markersize=markersize) #single label
     
     #I'm going to hold off on making new versions of the plotting itself until I've determined it looks different conclusively
     #rep_range=[8,9.5] #Age range that the representative point will be pulled from; it will be the max [Li/Ca] from that group.
@@ -263,9 +271,7 @@ def plot_lica_age_pop(colors=['b','b','b','b'],marker='o', rep_errors=False, sol
 
     return
 
-def plot_lica_age():
-    
-    return
+
 
 def plot_ALi_FeH(colors=['b','b','b','b'],marker='o',markersize=8):
     #ALi, ALi_err= get_ALi()
