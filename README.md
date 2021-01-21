@@ -3,6 +3,8 @@ Reduction and Analysis Code for Kaiser et al. 2020, Lithium pollution of a white
 
 Please cite the main paper (Kaiser et al. 2020 Lithium pollution of a white dwarf records the accretion of an extrasolar planetesimal) if you use this code not just this Zenodo repository.
 
+This is the code that was uploaded to the Zenodo repository. https://doi.org/10.5281/zenodo.4244618. Technically, this code is slightly different because I had to make a few cosmetic tweaks to the plots for the final version (after clearing reviewers), such as making the name of J1644 WD J1644-0449 instead of Gaia J1644-0449, and removing a bunch of labels we didn't have time to define for solar system bodies. Again though, if you use this code from here on Github or from the zenodo repository, please cite the actual paper: DOI: 10.1126/science.abd1714
+
 This code contains the scripts used to reduce the raw Goodman data to produce the 1-d spectra provided as supplementary data. It also contains the code to produce the figures in the paper (which incorporates some of the analysis). It includes the necessary supporting scripts for the figure production and to produce the input files for the figures (excluding those files that come from other publicly available sources as outlined below). 
 
 The code and reference files refer to "GaiaJ1644-0449" throughout them. This was the previous name we used for WD J1644–0449, and rather than changing it everywhere in the code I just created a function that replaces it in outputs for display purposes.
